@@ -1,0 +1,874 @@
+{
+  "namespace": "test1",
+  "type": "record",
+  "name": "Avro",
+  "fields": [    {
+      "name": "Id",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "PartnerId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "CurrencyId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "IBAN",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "SwiftCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Name",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "FirstName",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "LastName",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "MiddleName",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Title",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "NickName",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Login",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "RegionId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "BirthRegionId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "Gender",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "ProfileId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "DocNumber",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "PersonalId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Address",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "AditionalAddress",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Email",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Language",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Phone",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "MobilePhone",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "BirthDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "City",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ZipCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "BirthCity",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "BirthDepartment",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "MaximalDailyBet",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "MaximalSingleBet",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "PasswordSalt",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null
+    },
+    {
+      "name": "PasswordHash",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "PromoCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "TimeZone",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "OwnerId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsLocked",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsSubscribedToNewsletter",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsVerified",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "Created",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "Modified",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "SessionId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "Excluded",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "ExcludeTypeId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "RFId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ResetCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ResetExpireDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "DocIssuedBy",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "DocIssueDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "DocIssueCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Province",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "PreMatchSelectionLimit",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "LiveSelectionLimit",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "SportsbookProfileId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "LoyaltyLevelId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsUsingLoyaltyProgram",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "GlobalLiveDelay",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "AffilateId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "BTag",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ExcludedLast",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "IsTest",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "ExternalId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "AuthomaticWithdrawalAmount",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "AuthomaticWithdrawalMinLeftAmount",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsAutomaticWithdrawalEnabled",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "ActivationCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ActivationCodeExpireDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "ActivationState",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsResident",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "RegistrationSource",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "DocumentInfo",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "PricePartnerId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "NotificationOptions",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "AccountHolder",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "CashDeskId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "WrongLoginAttempts",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "WrongLoginBlockTime",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "ActiveTimeInCasino",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "DublicateClientId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsNoBonus",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsSportBlocked",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsCasinoBlocked",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "VerificationDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "DocRegionId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "OriginalBirthDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "PartnerFlag",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "PidNumber",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Currencies",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Status",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "GDPRAcceptanceDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "LastCashBackBonusDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "IsRMTBlocked",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "TermsAndConditionsVersion",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "TCVersionAcceptanceDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "IsTwoFactorAuthenticationEnabled",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "IsQRCodeUsed",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "TwoFactorAuthenticationCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "PepStatusId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "PepStatusModifiedDate",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "PreferredCurrencyId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "SessionDuration",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    }
+]
+}
