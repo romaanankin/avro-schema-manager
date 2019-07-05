@@ -322,7 +322,11 @@
       "name": "Created",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -330,7 +334,11 @@
       "name": "Modified",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -346,7 +354,11 @@
       "name": "Excluded",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -378,7 +390,11 @@
       "name": "ResetExpireDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -486,7 +502,11 @@
       "name": "ExcludedLast",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -542,7 +562,11 @@
       "name": "ActivationCodeExpireDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -622,7 +646,11 @@
       "name": "WrongLoginBlockTime",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -670,7 +698,11 @@
       "name": "VerificationDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -730,7 +762,11 @@
       "name": "GDPRAcceptanceDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -738,7 +774,11 @@
       "name": "LastCashBackBonusDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -762,7 +802,11 @@
       "name": "TCVersionAcceptanceDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },
@@ -802,7 +846,11 @@
       "name": "PepStatusModifiedDate",
       "type": [
         "null",
-        "string"
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
       ],
       "default": null
     },

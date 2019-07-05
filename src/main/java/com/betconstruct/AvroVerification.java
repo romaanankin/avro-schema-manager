@@ -17,24 +17,12 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AvroVerificator {
-
-    Map<String, Type> dataTypesInBase;
-    Map<String, Type> dataTypesInAvro;
-
-    public static void main(String[] args) throws IOException {
-        final String resultkFilePAth = "/home/roman/Documents/schemavalidator/src/main/resources/testdb.csv";
-        final String sourceFileAvro = "/home/roman/Documents/schemavalidator/src/main/resources/test.avsc";
-        final String CSVSource = "/home/roman/Documents/schemavalidator/src/main/resources/client.csv";
-
-
-        new AvroVerificator().validateSchema(resultkFilePAth,sourceFileAvro,CSVSource);
-    }
+public class AvroVerification {
 
     void validateSchema(String resultFilePath, String sourceFileAvro, String CSVSourse) throws IOException {
 
-        dataTypesInBase = new HashMap<>();
-        dataTypesInAvro = new HashMap<>();
+        Map<String, Type> dataTypesInBase = new HashMap<>();
+        Map<String, Type> dataTypesInAvro = new HashMap<>();
 
 
         JSONObject jsonObject = parseJSONFile(sourceFileAvro);
@@ -46,15 +34,13 @@ public class AvroVerificator {
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(resultFilePath));
 
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                .withHeader("Field", "FormatInBase", "FormatInAvro", "Mismatch"));
+                .withHeader("Field", "FormatInBase", "FormatInAvro"));
 
-
-        for (
-                CSVRecord strings : csvParser) {
+        for (CSVRecord strings : csvParser) {
             Type type = new Type();
             type.setDataType(strings.get(1));
             type.setNumericPrecision(strings.get(2));
-            type.setNumericScele(strings.get(3));
+            type.setNumericScale(strings.get(3));
             dataTypesInBase.put(strings.get(0), type);
         }
 
@@ -75,9 +61,9 @@ public class AvroVerificator {
             Type type = dataTypesInAvro.get(key);
             if (type != null) {
                 System.out.println(key + type.getDataType() + inBase.getValue().getDataType());
-                csvPrinter.printRecord(key, inBase.getValue().getDataType(), type.getDataType(), "");
+                csvPrinter.printRecord(key, inBase.getValue().getDataType(), type.getDataType());
             } else {
-                csvPrinter.printRecord(key, inBase.getValue().getDataType(), "", "true");
+                csvPrinter.printRecord(key, inBase.getValue().getDataType(), "");
             }
         }
 
@@ -92,7 +78,7 @@ public class AvroVerificator {
         csvPrinter.flush();
     }
 
-    public static JSONObject parseJSONFile(String filename) throws JSONException, IOException {
+    public JSONObject parseJSONFile(String filename) throws JSONException, IOException {
         String content = new String(Files.readAllBytes(Paths.get(filename)));
         return new JSONObject(content);
     }

@@ -3,7 +3,7 @@ package com.betconstruct;
 public class Type {
     private String dataType;
     private String numericPrecision;
-    private String numericScele;
+    private String numericScale;
 
     public String getDataType() {
         return dataType;
@@ -21,12 +21,12 @@ public class Type {
         this.numericPrecision = numericPrecision;
     }
 
-    public String getNumericScele() {
-        return numericScele;
+    public String getNumericScale() {
+        return numericScale;
     }
 
-    public void setNumericScele(String numericScele) {
-        this.numericScele = numericScele;
+    public void setNumericScale(String numericScale) {
+        this.numericScale = numericScale;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Type {
         return "Type{" +
                 "dataType='" + dataType + '\'' +
                 ", numericPrecision='" + numericPrecision + '\'' +
-                ", numericScele='" + numericScele + '\'' +
+                ", numericScale='" + numericScale + '\'' +
                 '}';
     }
 }
