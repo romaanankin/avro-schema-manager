@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AvroVerification {
-
     void validateSchema(String resultFilePath, String sourceFileAvro, String CSVSourse) throws IOException {
 
         Map<String, Type> dataTypesInBase = new HashMap<>();
@@ -78,7 +77,7 @@ public class AvroVerification {
         csvPrinter.flush();
     }
 
-    public JSONObject parseJSONFile(String filename) throws JSONException, IOException {
+    private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
         String content = new String(Files.readAllBytes(Paths.get(filename)));
         return new JSONObject(content);
     }
