@@ -48,10 +48,10 @@ public class AvroManager {
         }
 
         switch (mode) {
-            case "-generate":
+            case "-g":
                 generateAvroFromDbInfo(tables,rawQuery,properties,csvDirectory,avroDirectory,avroNameSpace);
                 break;
-            case "-verify" :
+            case "-v" :
                 validateAvroSchemas(avroDirectory,verificationResultDirectory,csvDirectory);
                 break;
             case "-gv":

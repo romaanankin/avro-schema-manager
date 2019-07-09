@@ -32,6 +32,7 @@ public class AvroGenerator {
         StringBuilder stringBuilder = new StringBuilder();
 
         for(int i = 0; i < csvRecordList.size(); i++) {
+            System.out.println("Parsing CSV input fields : " + i);
             CSVRecord csvRecord = csvRecordList.get(i);
             String columnName = csvRecord.get(0);
             String dataType = convertTypes(csvRecord.get(1));

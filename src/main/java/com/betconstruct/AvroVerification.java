@@ -23,7 +23,6 @@ public class AvroVerification {
         Map<String, Type> dataTypesInBase = new HashMap<>();
         Map<String, Type> dataTypesInAvro = new HashMap<>();
 
-
         JSONObject jsonObject = parseJSONFile(sourceFileAvro);
 
         Reader in = new FileReader(CSVSourse);
@@ -54,26 +53,30 @@ public class AvroVerification {
             }
             dataTypesInAvro.put(jsonObject1.getString("name"), type);
         }
-
+        int counter = 0;
         for (Map.Entry<String, Type> inBase : dataTypesInBase.entrySet()) {
             String key = inBase.getKey();
             Type type = dataTypesInAvro.get(key);
             if (type != null) {
-                System.out.println(key + type.getDataType() + inBase.getValue().getDataType());
                 csvPrinter.printRecord(key, inBase.getValue().getDataType(), type.getDataType());
+                System.out.println("Printing types from database to verification CSV :" + counter++);
             } else {
                 csvPrinter.printRecord(key, inBase.getValue().getDataType(), "");
+                System.out.println("Printing types from database to verification CSV :" + counter++);
+
             }
         }
-
+        counter = 0;
         for (Map.Entry<String, Type> inAvro : dataTypesInAvro.entrySet()) {
             String key = inAvro.getKey();
             Type type = dataTypesInBase.get(key);
             if (type == null) {
                 csvPrinter.printRecord(key, "", inAvro.getValue().getDataType(), "true");
+                System.out.println("Printing types from Avro file to verification CSV :" + counter++);
             }
         }
         csvPrinter.flush();
+        System.out.println("Verification file READY");
     }
 
     private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
