@@ -1,0 +1,8 @@
+Field,FormatInBase,FormatInAvro
+Modified,datetimeoffset,"{""connect.version"":1,""type"":""long"",""connect.name"":""org.apache.kafka.connect.data.Timestamp""}"
+MatchId,int,int
+Changed,bit,boolean
+PreMatchMarketTypeGroupId,int,int
+PartnerId,int,int
+LiveMarketTypeGroupId,int,int
+SessionId,int,int

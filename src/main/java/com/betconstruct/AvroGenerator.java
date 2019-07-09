@@ -68,12 +68,13 @@ public class AvroGenerator {
                 "          \"connect.name\": \"org.apache.kafka.connect.data.Timestamp\"\n" +
                 "        }";
         if (rawType.contains("bigint"))  return "\"long\"";
-        if (rawType.equals("int"))  return "\"int\"";
+        if (rawType.contains("int"))  return "\"int\"";
         if (rawType.contains("decimal"))  return "\"double\"";
         if (rawType.contains("char"))  return "\"string\"";
         if (rawType.contains("bit"))  return "\"boolean\"";
         if (rawType.contains("timestamp"))  return "\"string\"";
         if (rawType.contains("date"))  return timestamp;
+        if (rawType.equals("time"))  return timestamp;
         else return rawType + "To Define";
     }
 }

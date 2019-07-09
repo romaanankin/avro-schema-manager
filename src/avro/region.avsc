@@ -1,0 +1,90 @@
+{
+  "namespace": "com.betconstruct.antifraud.avro",
+  "type": "record",
+  "name": "Region",
+  "fields": [    {
+      "name": "NameId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "RegionTypeId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "ParentId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "TimeZone",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Alpha3Code",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Alpha2Code",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Modified",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "connect.version": 1,
+          "connect.name": "org.apache.kafka.connect.data.Timestamp"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "SessionId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "UpdateVersion",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "Alpha2CodeNameId",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    }
+]
+}

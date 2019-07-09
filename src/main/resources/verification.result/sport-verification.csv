@@ -1,0 +1,12 @@
+Field,FormatInBase,FormatInAvro
+Modified,datetimeoffset,"{""connect.version"":1,""type"":""long"",""connect.name"":""org.apache.kafka.connect.data.Timestamp""}"
+PartnerInvisible,bit,boolean
+SportType,int,int
+NameId,int,int
+LiveDelay,int,int
+UpdateVersion,timestamp,string
+Alias,nvarchar,string
+Duration,int,int
+IsSendingPreMatch,bit,boolean
+RestrictSource,varchar,string
+SessionId,int,int

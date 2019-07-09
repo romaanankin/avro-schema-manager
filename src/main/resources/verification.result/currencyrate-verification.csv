@@ -1,0 +1,6 @@
+Field,FormatInBase,FormatInAvro
+RateDate,datetimeoffset,"{""connect.version"":1,""type"":""long"",""connect.name"":""org.apache.kafka.connect.data.Timestamp""}"
+Rate,decimal,double
+FromCurrency,char,string
+ToCurrency,char,string
+PartnerId,int,int

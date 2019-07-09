@@ -1,0 +1,7 @@
+Field,FormatInBase,FormatInAvro
+Order,int,int
+IsHome,bit,boolean
+UpdateVersion,timestamp,string
+IsInvisible,bit,boolean
+TeamId,int,int
+IsStrong,bit,boolean

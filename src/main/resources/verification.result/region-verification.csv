@@ -1,0 +1,11 @@
+Field,FormatInBase,FormatInAvro
+ParentId,int,int
+TimeZone,char,string
+Modified,datetimeoffset,"{""connect.version"":1,""type"":""long"",""connect.name"":""org.apache.kafka.connect.data.Timestamp""}"
+NameId,int,int
+Alpha2Code,char,string
+UpdateVersion,timestamp,string
+Alpha3Code,char,string
+Alpha2CodeNameId,int,int
+RegionTypeId,int,int
+SessionId,int,int

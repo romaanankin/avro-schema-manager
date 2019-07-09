@@ -24,6 +24,8 @@ java -jar <path-to-jar> <mode> <path-to-propetties> <coma-separeted-tables-to-ge
 
 EXAMPLE:  `java -jar schema-validator-1.0-SNAPSHOT.uber.jar -gv database.properties bet`
 
+
+TODO: generate schemas straight from rabbit MQ
 ## Built With
 * [Maven](https://maven.apache.org/) - Dependency Management
 
