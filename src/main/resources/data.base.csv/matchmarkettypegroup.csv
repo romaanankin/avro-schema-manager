@@ -1,8 +1,0 @@
-COLUMN_NAME,DATA_TYPE,NUMERIC_PRECISION,NUMERIC_SCALE
-MatchId,int,10,0
-PartnerId,int,10,0
-LiveMarketTypeGroupId,int,10,0
-PreMatchMarketTypeGroupId,int,10,0
-Changed,bit,,
-SessionId,int,10,0
-Modified,datetimeoffset,,

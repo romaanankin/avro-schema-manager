@@ -1,6 +1,0 @@
-COLUMN_NAME,DATA_TYPE,NUMERIC_PRECISION,NUMERIC_SCALE
-RateDate,datetimeoffset,,
-FromCurrency,char,,
-ToCurrency,char,,
-Rate,decimal,14,8
-PartnerId,int,10,0

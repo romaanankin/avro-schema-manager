@@ -1,7 +1,0 @@
-COLUMN_NAME,DATA_TYPE,NUMERIC_PRECISION,NUMERIC_SCALE
-TeamId,int,10,0
-IsHome,bit,,
-Order,int,10,0
-IsInvisible,bit,,
-IsStrong,bit,,
-UpdateVersion,timestamp,,
