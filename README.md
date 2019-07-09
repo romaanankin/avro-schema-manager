@@ -24,7 +24,9 @@ java -jar <path-to-jar> <mode> <path-to-propetties> <coma-separeted-tables-to-ge
 
 EXAMPLE:  `java -jar schema-validator-1.0-SNAPSHOT.uber.jar -gv database.properties bet`
 
+#####NOTE THAT IF YOU WANT TO VALIDATE FILES MANUALLY JUST PUT THEM INTO CORRESPONDING DIRECTORIES, DEFINED IN A PROPERTIES FILE, AND GIVE THE SAME NAME
 
+ 
 TODO: generate schemas straight from rabbit MQ
 ## Built With
 * [Maven](https://maven.apache.org/) - Dependency Management
