@@ -73,7 +73,6 @@ public class AvroVerification {
                 csvPrinter.printRecord(key, "", inAvro.getValue().getDataType(), "true");
             }
         }
-
         csvPrinter.flush();
     }
 

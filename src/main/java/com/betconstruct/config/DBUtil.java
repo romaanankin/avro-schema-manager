@@ -4,10 +4,10 @@ import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 import java.util.Properties;
 
-import static com.betconstruct.Main.DB_NAME;
-import static com.betconstruct.Main.DB_URL;
-import static com.betconstruct.Main.PASSWORD;
-import static com.betconstruct.Main.USER;
+import static com.betconstruct.AvroManager.DB_NAME;
+import static com.betconstruct.AvroManager.DB_URL;
+import static com.betconstruct.AvroManager.PASSWORD;
+import static com.betconstruct.AvroManager.USER;
 
 public class DBUtil {
     public static JdbcManager getJdbcManager(Properties properties) {

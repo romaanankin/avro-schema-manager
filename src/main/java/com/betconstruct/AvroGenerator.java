@@ -4,7 +4,13 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +22,7 @@ public class AvroGenerator {
     }
 
     public String getAvroFromCsv (String inputFile,String namespace,String avroObjectName) throws IOException {
-        File file = new File(inputFile);
-        Reader in = new FileReader(file);
+        Reader in = new FileReader(inputFile);
         CSVParser csvParser = new CSVParser(in,CSVFormat.DEFAULT.withHeader());
         List<CSVRecord> csvRecordList = new ArrayList<>();
         for (CSVRecord records: csvParser) {
