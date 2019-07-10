@@ -34,7 +34,7 @@ public class AvroGenerator {
             CSVRecord csvRecord = csvRecordList.get(i);
             String columnName = csvRecord.get(0);
             String dataType = convertTypes(csvRecord.get(1));
-            String s1 = String.format("    {\n" +
+            String rawAvroField = String.format("    {\n" +
                     "      \"name\": \"%s\",\n" +
                     "      \"type\": [\n" +
                     "        \"null\",\n" +
@@ -43,7 +43,7 @@ public class AvroGenerator {
                     "      \"default\": null\n" +
                     "    },\n",columnName,dataType);
 
-            stringBuilder.append(s1);
+            stringBuilder.append(rawAvroField);
             if(i==csvRecordList.size() - 1){
                 stringBuilder.deleteCharAt(stringBuilder.length() - 2);
             }
@@ -59,7 +59,7 @@ public class AvroGenerator {
                 "]\n}",namespace,avroObjectName);
     }
 
-    public String convertTypes(String rawType) {
+    private String convertTypes(String rawType) {
         String timestamp = "{\n" +
                 "          \"type\": \"long\",\n" +
                 "          \"connect.version\": 1,\n" +

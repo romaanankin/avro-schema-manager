@@ -16,38 +16,39 @@ public class JdbcManagerImpl implements JdbcManager {
     private final DataSource dataSource;
     private final PreparedStatementParameterSetter preparedStatementParameterSetter;
 
-    public JdbcManagerImpl(final DataSource dataSource, PreparedStatementParameterSetter preparedStatementParameterSetter) {
+    public JdbcManagerImpl(DataSource dataSource, PreparedStatementParameterSetter preparedStatementParameterSetter) {
         this.dataSource = dataSource;
         this.preparedStatementParameterSetter = preparedStatementParameterSetter;
     }
 
-    protected final Connection getConnection() {
+    protected Connection getConnection() {
         try {
             return dataSource.getConnection();
-        } catch (final SQLException e) {
-            throw  new RuntimeException();
+        } catch (SQLException e) {
+            System.out.println(e.getSQLState());
+            throw new RuntimeException();
         }
     }
 
-    private void closeQuietly(final Connection connection,
-                              final PreparedStatement statement,
-                              final ResultSet resultSet) {
+    private void closeQuietly(Connection connection,
+                              PreparedStatement statement,
+                              ResultSet resultSet) {
         if (null != resultSet)
             try {
                 resultSet.close();
-            } catch (final SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         if (null != statement)
             try {
                 statement.close();
-            } catch (final SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         if (null != connection)
             try {
                 connection.close();
-            } catch (final SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
     }
@@ -153,7 +154,7 @@ public class JdbcManagerImpl implements JdbcManager {
     }
 
     @Override
-    public int update(final String sql, final Object... parameters) throws SQLException {
+    public int update(String sql, Object... parameters) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
         final ResultSet resultSet = null;
@@ -168,7 +169,7 @@ public class JdbcManagerImpl implements JdbcManager {
         } catch (final SQLException e) {
             rollback(connection);
             throw e;
-        } catch (final Exception e) {
+        } catch (Exception e) {
             rollback(connection);
             throw new SQLException(e);
         } finally {
@@ -176,7 +177,7 @@ public class JdbcManagerImpl implements JdbcManager {
         }
     }
 
-    private void rollback(final Connection connection) {
+    private void rollback(Connection connection) {
         if (null != connection) {
             try {
                 connection.rollback();

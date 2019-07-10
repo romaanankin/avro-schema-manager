@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AvroVerification {
+public class AvroVerificator {
     void validateSchema(String resultFilePath, String sourceFileAvro, String CSVSourse) throws IOException {
 
         Map<String, Type> dataTypesInBase = new HashMap<>();

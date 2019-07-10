@@ -1,72 +1,86 @@
 package com.betconstruct;
 
+import com.betconstruct.config.AvroManagerConfig;
 import com.betconstruct.config.DBUtil;
 import com.betconstruct.config.JdbcManager;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class AvroManager {
-    private final static String AVRO_NAMESPACE = "avro.namespace";
-    private final static String DB_CSV_DIR = "db.csv.dir";
-    private final static String VERIFICATION_RESULTS_DIR = "verification.result.dir";
-    private final static String AVRO_DIR = "avro.dir";
-    private final static String TABLE_NAME = "table.name";
-    private final static String QUERY = "query";
-    public final static String DB_URL = "url";
-    public final static String USER = "user";
-    public final static String PASSWORD = "password";
-    public final static String DB_NAME = "data.base.name";
+    private AvroGenerator avroGenerator;
+    private AvroVerificator avroVerificator;
+    public static final String CSV_FILE_FORMAT = ".csv";
+    public static final String AVRO_FILE_FORMAT = ".avsc";
+    private Properties properties;
     private String rawQuery;
     private String csvDirectory;
     private String verificationResultDirectory;
     private String avroDirectory;
     private String avroNameSpace;
-    private Properties properties;
+    private String mode;
+    private String configPath;
+    private String[] tables;
+
+    public AvroManager(AvroVerificator avroVerificator, AvroGenerator avroGenerator) {
+        this.avroVerificator = avroVerificator;
+        this.avroGenerator = avroGenerator;
+    }
 
     public void manage(String[] args) throws IOException {
-         properties = new Properties();
 
-        String mode = args[0];
-        String configPath = args[1];
-        String[] tables = args[2].split(",");
+        String infoMessage = "Available mods:\n " +
+                "<mode> <path-to-propetties> <coma-separeted-tables-to-genegate-of-verify>\n" +
+                "1) `-g` generates an Avro schemas if .CSV files provided \n" +
+                "2) `-v` verifies provided Avro schemas with provided .CSV producing verification .CSV file \n" +
+                "3) `gv` generates and verify Avro schemas using database information schemas and producing .CSV verification file ";
 
-        try (InputStream inputStream = new FileInputStream(configPath)) {
-            properties.load(inputStream);
-            csvDirectory = properties.getProperty(DB_CSV_DIR);
-            verificationResultDirectory = properties.getProperty(VERIFICATION_RESULTS_DIR);
-            avroDirectory = properties.getProperty(AVRO_DIR);
-            avroNameSpace = properties.getProperty(AVRO_NAMESPACE);
-            rawQuery = properties.getProperty(QUERY);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(args.length == 1 && args[0].equals("-h")) {
+            System.out.println(infoMessage);
+            return;
+        }
+        configure(args);
+        if(args.length > 2) {
+            tables = args[2].split(",");
         }
 
         switch (mode) {
             case "-g":
-                generateAvroFromDbInfo(tables,properties,csvDirectory,avroDirectory,avroNameSpace);
+                generateAvroFromDbInfo(tables,rawQuery,properties,csvDirectory,avroDirectory,avroNameSpace);
                 break;
             case "-v" :
-                validateAvroSchemas(properties,avroDirectory,verificationResultDirectory,csvDirectory);
+                validateAvroSchemas(properties,rawQuery,avroDirectory,verificationResultDirectory,csvDirectory);
                 break;
             case "-gv":
-                generateAvroFromDbInfo(tables,properties,csvDirectory,avroDirectory,avroNameSpace);
-                validateAvroSchemas(properties,avroDirectory,verificationResultDirectory,csvDirectory);
+                generateAvroFromDbInfo(tables,rawQuery,properties,csvDirectory,avroDirectory,avroNameSpace);
+                validateAvroSchemas(properties,rawQuery,avroDirectory,verificationResultDirectory,csvDirectory);
                 break;
+            default:
+                System.out.println(infoMessage);
         }
     }
 
-    private void generateAvroFromDbInfo(String[] tables,Properties properties, String csvDirectory,
+    private void configure(String[] args) {
+        mode = args[0];
+        configPath = args[1];
+        properties = AvroManagerConfig.getProperties(configPath);
+        csvDirectory = properties.getProperty(AvroManagerConfig.DB_CSV_DIR);
+        verificationResultDirectory = properties.getProperty(AvroManagerConfig.VERIFICATION_RESULTS_DIR);
+        avroDirectory = properties.getProperty(AvroManagerConfig.AVRO_DIR);
+        avroNameSpace = properties.getProperty(AvroManagerConfig.AVRO_NAMESPACE);
+        rawQuery = properties.getProperty(AvroManagerConfig.QUERY);
+        tables = properties.getProperty(AvroManagerConfig.TABLE_NAME).split(",");
+    }
+
+    private void generateAvroFromDbInfo(String[] tables, String rawQuery, Properties properties, String csvDirectory,
                                         String avroDirectory, String avroNameSpace) throws IOException {
         for (String table : tables) {
-            writeCSVfromDb(properties,table);
+            writeCSVfromDb(properties,table,rawQuery,csvDirectory);
         }
 
         File dbCsvDir = new File(csvDirectory);
@@ -81,14 +95,14 @@ public class AvroManager {
                 String canonicalPath = file.getCanonicalPath();
                 String fileName = file.getName();
                 String name = fileName.substring(0, fileName.length() - 4);
-                String avroOutput = avroDirectory + name + ".avsc";
+                String avroOutput = avroDirectory + name + AVRO_FILE_FORMAT;
 
-                new AvroGenerator().writeAvroFile(canonicalPath,avroOutput, avroNameSpace, StringUtils.capitalize(name));
+             avroGenerator.writeAvroFile(canonicalPath,avroOutput, avroNameSpace, StringUtils.capitalize(name));
             }
         }
     }
 
-    private void validateAvroSchemas(Properties properties, String avroDirectory, String verificationResultDirectory,
+    private void validateAvroSchemas(Properties properties, String rawQuery, String avroDirectory, String verificationResultDirectory,
                                      String csvDirectory) throws IOException {
         File avroDir = new File(avroDirectory);
         if(!avroDir.exists()) {
@@ -105,23 +119,23 @@ public class AvroManager {
             for (File file : avroFiles) {
                 String canonicalPath = file.getCanonicalPath();
                 String name = file.getName().substring(0, file.getName().length() - 5);
-                writeCSVfromDb(properties,name);
-                String inputFileName = verificationResultDirectory + name + "-verification.csv";
-                String outputFileName = csvDirectory + name + ".csv";
+                writeCSVfromDb(properties,name,rawQuery,csvDirectory);
+                String inputFileName = verificationResultDirectory + name + "-verification" + CSV_FILE_FORMAT;
+                String outputFileName = csvDirectory + name + CSV_FILE_FORMAT;
 
-                new AvroVerification().validateSchema(inputFileName,canonicalPath,outputFileName);
+                avroVerificator.validateSchema(inputFileName,canonicalPath,outputFileName);
             }
         }
     }
 
-    private void writeCSVfromDb(Properties properties, String table) throws FileNotFoundException {
+    private void writeCSVfromDb(Properties properties, String table,String rawQuery,String csvDirectory) throws FileNotFoundException {
         JdbcManager jdbcManager = DBUtil.getJdbcManager(properties);
         String query = String.format(rawQuery, table);
         File file = new File(csvDirectory);
         if (!file.exists()) {
             file.mkdir();
         }
-        PrintStream printStream = new PrintStream(new File(String.format(csvDirectory + "/%s.csv", table)));
+        PrintStream printStream = new PrintStream(new File(String.format(csvDirectory + "/%s" + CSV_FILE_FORMAT, table)));
         try {
             jdbcManager.writeCsv(query, printStream);
         } catch (SQLException e) {
