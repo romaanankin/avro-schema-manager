@@ -19,10 +19,10 @@ Launch app in terminal choosing one of three available mods and provided databas
 3) `gv` generates and verify Avro schemas using database information schemas and producing .CSV verification file  
 
 ```sh
-java -jar <path-to-jar> <mode> <path-to-propetties> <coma-separeted-tables-to-genegate-of-verify>
+java -jar <path-to-jar> <mode> <path-to-propetties>   <coma-separeted-tables-to-genegate-of-verify> - optional field (could be defined in properties)
 ```
 
-EXAMPLE:  `java -jar schema-validator-1.0-SNAPSHOT.uber.jar -gv database.properties bet`
+EXAMPLE:  `java -jar schema-validator-1.0-SNAPSHOT.uber.jar -gv database.properties bet,client,partner`
 
 #####NOTE THAT IF YOU WANT TO VALIDATE FILES MANUALLY JUST PUT THEM INTO CORRESPONDING DIRECTORIES, DEFINED IN A PROPERTIES FILE, AND GIVE THE SAME NAME
 

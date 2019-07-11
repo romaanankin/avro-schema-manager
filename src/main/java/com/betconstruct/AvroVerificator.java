@@ -18,41 +18,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AvroVerificator {
-    void validateSchema(String resultFilePath, String sourceFileAvro, String CSVSourse) throws IOException {
-
-        Map<String, Type> dataTypesInBase = new HashMap<>();
-        Map<String, Type> dataTypesInAvro = new HashMap<>();
-
-        JSONObject jsonObject = parseJSONFile(sourceFileAvro);
-
-        Reader in = new FileReader(CSVSourse);
-
-        CSVParser csvParser = new CSVParser(in, CSVFormat.DEFAULT.withHeader());
+    public void validateSchema(String resultFilePath, String sourceFileAvro, String CSVSourse) throws IOException {
+        Map<String, Type>  dataTypesInBase = CSVToMap(CSVSourse);
+        JSONObject avroJson = parseJSONFile(sourceFileAvro);
+        Map<String, Type> dataTypesInAvro = avroToMap(avroJson);
 
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(resultFilePath));
 
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
                 .withHeader("Field", "FormatInBase", "FormatInAvro"));
 
-        for (CSVRecord strings : csvParser) {
-            Type type = new Type();
-            type.setDataType(strings.get(1));
-            type.setNumericPrecision(strings.get(2));
-            type.setNumericScale(strings.get(3));
-            dataTypesInBase.put(strings.get(0), type);
-        }
-
-        JSONArray fields = jsonObject.getJSONArray("fields");
-        for (int i = 0; i < fields.length(); i++) {
-            JSONObject jsonObject1 = fields.getJSONObject(i);
-            Type type = new Type();
-            try {
-                type.setDataType(jsonObject1.getJSONArray("type").getString(1));
-            } catch (JSONException e) {
-                type.setDataType(jsonObject1.getJSONArray("type").getJSONObject(1).toString());
-            }
-            dataTypesInAvro.put(jsonObject1.getString("name"), type);
-        }
         int counter = 0;
         for (Map.Entry<String, Type> inBase : dataTypesInBase.entrySet()) {
             String key = inBase.getKey();
@@ -71,7 +46,7 @@ public class AvroVerificator {
             String key = inAvro.getKey();
             Type type = dataTypesInBase.get(key);
             if (type == null) {
-                csvPrinter.printRecord(key, "", inAvro.getValue().getDataType(), "true");
+                csvPrinter.printRecord(key, "", inAvro.getValue().getDataType());
                 System.out.println("Printing types from Avro file to verification CSV :" + counter++);
             }
         }
@@ -82,5 +57,36 @@ public class AvroVerificator {
     private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
         String content = new String(Files.readAllBytes(Paths.get(filename)));
         return new JSONObject(content);
+    }
+
+    private Map<String, Type> CSVToMap(String CSVsource) throws IOException {
+        HashMap<String, Type> stringTypeHashMap = new HashMap<>();
+        Reader in = new FileReader(CSVsource);
+        CSVParser csvParser = new CSVParser(in, CSVFormat.DEFAULT.withHeader());
+
+        for (CSVRecord record : csvParser) {
+            Type type = new Type();
+            type.setDataType(record.get(1));
+            type.setNumericPrecision(record.get(2));
+            type.setNumericScale(record.get(3));
+            stringTypeHashMap.put(record.get(0), type);
+        }
+        return stringTypeHashMap;
+    }
+
+    private Map<String, Type> avroToMap(JSONObject jsonObject){
+        HashMap<String, Type> stringTypeHashMap = new HashMap<>();
+        JSONArray fields = jsonObject.getJSONArray("fields");
+        for (int i = 0; i < fields.length(); i++) {
+            JSONObject jsonObject1 = fields.getJSONObject(i);
+            Type type = new Type();
+            try {
+                type.setDataType(jsonObject1.getJSONArray("type").getString(1));
+            } catch (JSONException e) {
+                type.setDataType(jsonObject1.getJSONArray("type").getJSONObject(1).toString());
+            }
+            stringTypeHashMap.put(jsonObject1.getString("name"), type);
+        }
+        return stringTypeHashMap;
     }
 }
