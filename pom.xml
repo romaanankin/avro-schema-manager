@@ -44,6 +44,14 @@
             <version>1.6</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/net.sourceforge.csvjdbc/csvjdbc -->
         <dependency>
             <groupId>net.sourceforge.csvjdbc</groupId>

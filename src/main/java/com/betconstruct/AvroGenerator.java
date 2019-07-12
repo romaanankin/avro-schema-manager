@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AvroGenerator {
-    void writeAvroFile(String inputFile, String outputFile,String namespace,String avroObjectName) throws IOException {
+
+    public void writeAvroFile(String inputFile, String outputFile,String namespace,String avroObjectName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
         writer.write(getAvroFromCsv(inputFile,namespace,avroObjectName));
         writer.close();
     }
 
-    public String getAvroFromCsv (String inputFile,String namespace,String avroObjectName) throws IOException {
+    private String getAvroFromCsv(String inputFile, String namespace, String avroObjectName) throws IOException {
         Reader in = new FileReader(inputFile);
         CSVParser csvParser = new CSVParser(in,CSVFormat.DEFAULT.withHeader());
         List<CSVRecord> csvRecordList = new ArrayList<>();
@@ -65,6 +66,11 @@ public class AvroGenerator {
                 "          \"connect.version\": 1,\n" +
                 "          \"connect.name\": \"org.apache.kafka.connect.data.Timestamp\"\n" +
                 "        }";
+        String time = "{\n" +
+                "          \"type\": \"int\",\n" +
+                "          \"connect.version\": 1,\n" +
+                "          \"connect.name\": \"org.apache.kafka.connect.data.Time\"\n" +
+                "        }";
         if (rawType.contains("bigint"))  return "\"long\"";
         if (rawType.contains("int"))  return "\"int\"";
         if (rawType.contains("decimal"))  return "\"double\"";
@@ -72,7 +78,7 @@ public class AvroGenerator {
         if (rawType.contains("bit"))  return "\"boolean\"";
         if (rawType.contains("timestamp"))  return "\"string\"";
         if (rawType.contains("date"))  return timestamp;
-        if (rawType.equals("time"))  return timestamp;
+        if (rawType.equals("time"))  return time;
         else return rawType + "To Define";
     }
 }

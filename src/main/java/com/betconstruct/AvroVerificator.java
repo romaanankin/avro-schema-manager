@@ -51,6 +51,7 @@ public class AvroVerificator {
             }
         }
         csvPrinter.flush();
+        csvPrinter.close();
         System.out.println("Verification file READY");
     }
 

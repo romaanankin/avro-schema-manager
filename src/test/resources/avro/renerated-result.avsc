@@ -1,0 +1,14 @@
+{
+  "namespace": "namespace",
+  "type": "record",
+  "name": "Test",
+  "fields": [    {
+      "name": "test_field",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    }
+]
+}
