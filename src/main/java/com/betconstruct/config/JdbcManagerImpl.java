@@ -53,7 +53,6 @@ public class JdbcManagerImpl implements JdbcManager {
             }
     }
 
-
     @Override
     public void writeCsv(String sql, PrintStream printStream, Object... parameters) throws SQLException {
         Connection connection = null;
@@ -64,9 +63,7 @@ public class JdbcManagerImpl implements JdbcManager {
             statement = connection.prepareStatement(sql);
             preparedStatementParameterSetter.setParameters(statement, parameters);
             resultSet = statement.executeQuery();
-            while (resultSet.next()) {
                 CsvDriver.writeToCsv(resultSet, printStream, true);
-            }
         } catch (final SQLException e) {
             e.getErrorCode();
         } finally {
