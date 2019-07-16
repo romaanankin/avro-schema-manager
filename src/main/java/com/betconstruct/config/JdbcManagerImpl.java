@@ -63,8 +63,8 @@ public class JdbcManagerImpl implements JdbcManager {
             statement = connection.prepareStatement(sql);
             preparedStatementParameterSetter.setParameters(statement, parameters);
             resultSet = statement.executeQuery();
-                CsvDriver.writeToCsv(resultSet, printStream, true);
-        } catch (final SQLException e) {
+            CsvDriver.writeToCsv(resultSet, printStream, true);
+        } catch (SQLException e) {
             e.getErrorCode();
         } finally {
             closeQuietly(connection, statement, resultSet);
@@ -116,7 +116,7 @@ public class JdbcManagerImpl implements JdbcManager {
             }
             connection.commit();
             return id;
-        } catch (final SQLException e) {
+        } catch (SQLException e) {
             rollback(connection);
             throw e;
         } catch (final Exception e) {
