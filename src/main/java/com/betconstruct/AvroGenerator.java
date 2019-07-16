@@ -13,10 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AvroGenerator {
-
-    public void writeAvroFile(String inputFile, String outputFile,String namespace,String avroObjectName) throws IOException {
+    public void writeAvroFile(String inputFile, String outputFile, String namespace, String avroObjectName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
-        writer.write(getAvroFromCsv(inputFile,namespace,avroObjectName));
+        writer.write(getAvroFromCsv(inputFile, namespace, avroObjectName));
         writer.close();
     }
 
