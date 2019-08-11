@@ -1,4 +1,4 @@
-import com.betconstruct.AvroGenerator;
+import com.AvroGenerator;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;

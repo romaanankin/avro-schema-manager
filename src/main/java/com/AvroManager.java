@@ -1,8 +1,8 @@
-package com.betconstruct;
+package com;
 
-import com.betconstruct.config.AvroManagerConfig;
-import com.betconstruct.config.DBUtil;
-import com.betconstruct.config.JdbcManager;
+import com.config.AvroManagerConfig;
+import com.config.DBUtil;
+import com.config.JdbcManager;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.betconstruct.config;
+package com.config;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 

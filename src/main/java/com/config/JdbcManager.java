@@ -1,4 +1,4 @@
-package com.betconstruct.config;
+package com.config;
 
 import java.io.PrintStream;
 import java.sql.SQLException;

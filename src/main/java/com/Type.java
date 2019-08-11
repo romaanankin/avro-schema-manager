@@ -1,4 +1,4 @@
-package com.betconstruct;
+package com;
 
 public class Type {
     private String dataType;

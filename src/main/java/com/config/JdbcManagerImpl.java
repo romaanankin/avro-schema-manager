@@ -1,4 +1,4 @@
-package com.betconstruct.config;
+package com.config;
 
 import org.relique.jdbc.csv.CsvDriver;
 

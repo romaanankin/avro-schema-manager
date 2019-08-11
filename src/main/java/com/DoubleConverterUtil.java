@@ -1,4 +1,4 @@
-package com.betconstruct;
+package com;
 
 import java.math.BigDecimal;
 

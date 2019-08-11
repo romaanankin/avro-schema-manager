@@ -1,4 +1,4 @@
-package com.betconstruct;
+package com;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
